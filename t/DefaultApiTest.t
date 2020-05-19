@@ -53,6 +53,24 @@ isa_ok($api, 'WWW::OpenAPIClient::DefaultApi');
 }
 
 #
+# index_by_image_url test
+#
+{
+    my $model_id = undef; # replace NULL with a proper value
+    my $image_url = undef; # replace NULL with a proper value
+    my $result = $api->index_by_image_url(model_id => $model_id, image_url => $image_url);
+}
+
+#
+# index_image test
+#
+{
+    my $model_id = undef; # replace NULL with a proper value
+    my $file = undef; # replace NULL with a proper value
+    my $result = $api->index_image(model_id => $model_id, file => $file);
+}
+
+#
 # tag_image_by_url test
 #
 {

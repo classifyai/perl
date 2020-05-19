@@ -84,7 +84,7 @@ String. The OAuth access token.
 
 String. The base URL of the API
 
-default: http://localhost
+default: https://api.classifyai.com
 
 =back
 

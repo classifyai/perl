@@ -5,13 +5,15 @@
 use WWW::OpenAPIClient::Object::DefaultApi;
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.classifyai.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_new_model**](DefaultApi.md#create_new_model) | **PUT** /models | Create New Model
 [**delete_model**](DefaultApi.md#delete_model) | **DELETE** /models | Delete Model
 [**get_models_list**](DefaultApi.md#get_models_list) | **GET** /models | Get Models List
+[**index_by_image_url**](DefaultApi.md#index_by_image_url) | **GET** /index_by_image_url | Index by Using Image URL
+[**index_image**](DefaultApi.md#index_image) | **POST** /index_image | Index Local Image
 [**tag_image_by_url**](DefaultApi.md#tag_image_by_url) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 [**tag_local_image**](DefaultApi.md#tag_local_image) | **POST** /predict | Predict by Image
 [**update_model**](DefaultApi.md#update_model) | **POST** /models | Update Model
@@ -118,7 +120,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_models_list**
-> get_models_list()
+> string get_models_list()
 
 Get Models List
 
@@ -138,7 +140,8 @@ my $api_instance = WWW::OpenAPIClient::DefaultApi->new(
 
 
 eval { 
-    $api_instance->get_models_list();
+    my $result = $api_instance->get_models_list();
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->get_models_list: $@\n";
@@ -150,7 +153,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**string**
 
 ### Authorization
 
@@ -159,6 +162,112 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **index_by_image_url**
+> string index_by_image_url(model_id => $model_id, image_url => $image_url)
+
+Index by Using Image URL
+
+Index by Using Image URL
+
+### Example 
+```perl
+use Data::Dumper;
+use WWW::OpenAPIClient::DefaultApi;
+my $api_instance = WWW::OpenAPIClient::DefaultApi->new(
+
+    # Configure API key authorization: x-api-key
+    api_key => {'x-api-key' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'x-api-key' => 'Bearer'},
+);
+
+my $model_id = "model_id_example"; # string | Model ID
+my $image_url = "image_url_example"; # string | Image URL
+
+eval { 
+    my $result = $api_instance->index_by_image_url(model_id => $model_id, image_url => $image_url);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->index_by_image_url: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model_id** | **string**| Model ID | 
+ **image_url** | **string**| Image URL | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **index_image**
+> string index_image(model_id => $model_id, file => $file)
+
+Index Local Image
+
+Index Local Image
+
+### Example 
+```perl
+use Data::Dumper;
+use WWW::OpenAPIClient::DefaultApi;
+my $api_instance = WWW::OpenAPIClient::DefaultApi->new(
+
+    # Configure API key authorization: x-api-key
+    api_key => {'x-api-key' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'x-api-key' => 'Bearer'},
+);
+
+my $model_id = "model_id_example"; # string | Model ID
+my $file = "/path/to/file"; # string | 
+
+eval { 
+    my $result = $api_instance->index_image(model_id => $model_id, file => $file);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->index_image: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model_id** | **string**| Model ID | 
+ **file** | **string****string**|  | [optional] 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

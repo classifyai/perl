@@ -181,10 +181,10 @@ sub delete_model {
     __PACKAGE__->method_documentation->{ 'get_models_list' } = { 
         summary => 'Get Models List',
         params => $params,
-        returns => undef,
+        returns => 'string',
         };
 }
-# @return void
+# @return string
 #
 sub get_models_list {
     my ($self, %args) = @_;
@@ -209,10 +209,172 @@ sub get_models_list {
     my $auth_settings = [qw(x-api-key )];
 
     # make the API Call
-    $self->{api_client}->call_api($_resource_path, $_method,
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
                                            $query_params, $form_params,
                                            $header_params, $_body_data, $auth_settings);
-    return;
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('string', $response);
+    return $_response_object;
+}
+
+#
+# index_by_image_url
+#
+# Index by Using Image URL
+# 
+# @param string $model_id Model ID (required)
+# @param string $image_url Image URL (required)
+{
+    my $params = {
+    'model_id' => {
+        data_type => 'string',
+        description => 'Model ID',
+        required => '1',
+    },
+    'image_url' => {
+        data_type => 'string',
+        description => 'Image URL',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'index_by_image_url' } = { 
+        summary => 'Index by Using Image URL',
+        params => $params,
+        returns => 'string',
+        };
+}
+# @return string
+#
+sub index_by_image_url {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'model_id' is set
+    unless (exists $args{'model_id'}) {
+      croak("Missing the required parameter 'model_id' when calling index_by_image_url");
+    }
+
+    # verify the required parameter 'image_url' is set
+    unless (exists $args{'image_url'}) {
+      croak("Missing the required parameter 'image_url' when calling index_by_image_url");
+    }
+
+    # parse inputs
+    my $_resource_path = '/index_by_image_url';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'model_id'}) {
+        $query_params->{'model_id'} = $self->{api_client}->to_query_value($args{'model_id'});
+    }
+
+    # query params
+    if ( exists $args{'image_url'}) {
+        $query_params->{'image_url'} = $self->{api_client}->to_query_value($args{'image_url'});
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(x-api-key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('string', $response);
+    return $_response_object;
+}
+
+#
+# index_image
+#
+# Index Local Image
+# 
+# @param string $model_id Model ID (required)
+# @param string $file  (optional)
+{
+    my $params = {
+    'model_id' => {
+        data_type => 'string',
+        description => 'Model ID',
+        required => '1',
+    },
+    'file' => {
+        data_type => 'string',
+        description => '',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'index_image' } = { 
+        summary => 'Index Local Image',
+        params => $params,
+        returns => 'string',
+        };
+}
+# @return string
+#
+sub index_image {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'model_id' is set
+    unless (exists $args{'model_id'}) {
+      croak("Missing the required parameter 'model_id' when calling index_image");
+    }
+
+    # parse inputs
+    my $_resource_path = '/index_image';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('multipart/form-data');
+
+    # query params
+    if ( exists $args{'model_id'}) {
+        $query_params->{'model_id'} = $self->{api_client}->to_query_value($args{'model_id'});
+    }
+
+    # form params
+    if ( exists $args{'file'} ) {
+        $form_params->{'file'} = [] unless defined $form_params->{'file'};
+        push @{$form_params->{'file'}}, $args{'file'};
+            }
+    
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(x-api-key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('string', $response);
+    return $_response_object;
 }
 
 #
