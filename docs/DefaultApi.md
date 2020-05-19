@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**create_new_model**](DefaultApi.md#create_new_model) | **PUT** /models | Create New Model
 [**delete_model**](DefaultApi.md#delete_model) | **DELETE** /models | Delete Model
 [**get_models_list**](DefaultApi.md#get_models_list) | **GET** /models | Get Models List
-[**index_by_image_url**](DefaultApi.md#index_by_image_url) | **GET** /index_by_image_url | Index by Using Image URL
+[**index_by_image_url**](DefaultApi.md#index_by_image_url) | **POST** /index_by_image_url | Index by Using Image URL
 [**index_image**](DefaultApi.md#index_image) | **POST** /index_image | Index Local Image
 [**tag_image_by_url**](DefaultApi.md#tag_image_by_url) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 [**tag_local_image**](DefaultApi.md#tag_local_image) | **POST** /predict | Predict by Image
@@ -167,7 +167,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **index_by_image_url**
-> string index_by_image_url(model_id => $model_id, image_url => $image_url)
+> index_by_image_url(inline_object => $inline_object)
 
 Index by Using Image URL
 
@@ -185,12 +185,10 @@ my $api_instance = WWW::OpenAPIClient::DefaultApi->new(
     #api_key_prefix => {'x-api-key' => 'Bearer'},
 );
 
-my $model_id = "model_id_example"; # string | Model ID
-my $image_url = "image_url_example"; # string | Image URL
+my $inline_object = WWW::OpenAPIClient::Object::InlineObject->new(); # InlineObject | 
 
 eval { 
-    my $result = $api_instance->index_by_image_url(model_id => $model_id, image_url => $image_url);
-    print Dumper($result);
+    $api_instance->index_by_image_url(inline_object => $inline_object);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->index_by_image_url: $@\n";
@@ -201,12 +199,11 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **string**| Model ID | 
- **image_url** | **string**| Image URL | 
+ **inline_object** | [**InlineObject**](InlineObject.md)|  | 
 
 ### Return type
 
-**string**
+void (empty response body)
 
 ### Authorization
 
@@ -214,13 +211,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **index_image**
-> string index_image(model_id => $model_id, file => $file)
+> string index_image(model_id => $model_id, tag => $tag, file => $file)
 
 Index Local Image
 
@@ -238,11 +235,12 @@ my $api_instance = WWW::OpenAPIClient::DefaultApi->new(
     #api_key_prefix => {'x-api-key' => 'Bearer'},
 );
 
-my $model_id = "model_id_example"; # string | Model ID
+my $model_id = "model_id_example"; # string | 
+my $tag = "tag_example"; # string | 
 my $file = "/path/to/file"; # string | 
 
 eval { 
-    my $result = $api_instance->index_image(model_id => $model_id, file => $file);
+    my $result = $api_instance->index_image(model_id => $model_id, tag => $tag, file => $file);
     print Dumper($result);
 };
 if ($@) {
@@ -254,7 +252,8 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **string**| Model ID | 
+ **model_id** | **string**|  | [optional] 
+ **tag** | **string**|  | [optional] 
  **file** | **string****string**|  | [optional] 
 
 ### Return type
@@ -325,7 +324,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tag_local_image**
-> tag_local_image(model_id => $model_id, file => $file)
+> tag_local_image(file => $file, model_id => $model_id)
 
 Predict by Image
 
@@ -343,11 +342,11 @@ my $api_instance = WWW::OpenAPIClient::DefaultApi->new(
     #api_key_prefix => {'x-api-key' => 'Bearer'},
 );
 
-my $model_id = "model_id_example"; # string | Type your trained model id to predict. You get your model's id from Classify Dashboard.
 my $file = "/path/to/file"; # string | 
+my $model_id = "model_id_example"; # string | 
 
 eval { 
-    $api_instance->tag_local_image(model_id => $model_id, file => $file);
+    $api_instance->tag_local_image(file => $file, model_id => $model_id);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->tag_local_image: $@\n";
@@ -358,8 +357,8 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **string**| Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. | 
  **file** | **string****string**|  | [optional] 
+ **model_id** | **string**|  | [optional] 
 
 ### Return type
 

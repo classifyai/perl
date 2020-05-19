@@ -56,9 +56,8 @@ isa_ok($api, 'WWW::OpenAPIClient::DefaultApi');
 # index_by_image_url test
 #
 {
-    my $model_id = undef; # replace NULL with a proper value
-    my $image_url = undef; # replace NULL with a proper value
-    my $result = $api->index_by_image_url(model_id => $model_id, image_url => $image_url);
+    my $inline_object = undef; # replace NULL with a proper value
+    my $result = $api->index_by_image_url(inline_object => $inline_object);
 }
 
 #
@@ -66,8 +65,9 @@ isa_ok($api, 'WWW::OpenAPIClient::DefaultApi');
 #
 {
     my $model_id = undef; # replace NULL with a proper value
+    my $tag = undef; # replace NULL with a proper value
     my $file = undef; # replace NULL with a proper value
-    my $result = $api->index_image(model_id => $model_id, file => $file);
+    my $result = $api->index_image(model_id => $model_id, tag => $tag, file => $file);
 }
 
 #
@@ -83,9 +83,9 @@ isa_ok($api, 'WWW::OpenAPIClient::DefaultApi');
 # tag_local_image test
 #
 {
-    my $model_id = undef; # replace NULL with a proper value
     my $file = undef; # replace NULL with a proper value
-    my $result = $api->tag_local_image(model_id => $model_id, file => $file);
+    my $model_id = undef; # replace NULL with a proper value
+    my $result = $api->tag_local_image(file => $file, model_id => $model_id);
 }
 
 #

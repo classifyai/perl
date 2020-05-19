@@ -1,16 +1,15 @@
-# WWW::OpenAPIClient::Object::InlineObject
+# WWW::OpenAPIClient::Object::InlineObject2
 
 ## Load the model package
 ```perl
-use WWW::OpenAPIClient::Object::InlineObject;
+use WWW::OpenAPIClient::Object::InlineObject2;
 ```
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**image_url** | **string** |  | 
-**tag** | **string** |  | 
-**model_id** | **string** |  | 
+**file** | **string** |  | [optional] 
+**model_id** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

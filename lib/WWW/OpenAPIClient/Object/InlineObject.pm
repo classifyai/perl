@@ -161,9 +161,23 @@ __PACKAGE__->class_documentation({description => '',
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'file' => {
+    'image_url' => {
         datatype => 'string',
-        base_name => 'file',
+        base_name => 'image_url',
+        description => '',
+        format => '',
+        read_only => '',
+            },
+    'tag' => {
+        datatype => 'string',
+        base_name => 'tag',
+        description => '',
+        format => '',
+        read_only => '',
+            },
+    'model_id' => {
+        datatype => 'string',
+        base_name => 'model_id',
         description => '',
         format => '',
         read_only => '',
@@ -171,11 +185,15 @@ __PACKAGE__->method_documentation({
 });
 
 __PACKAGE__->openapi_types( {
-    'file' => 'string'
+    'image_url' => 'string',
+    'tag' => 'string',
+    'model_id' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
-    'file' => 'file'
+    'image_url' => 'image_url',
+    'tag' => 'tag',
+    'model_id' => 'model_id'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

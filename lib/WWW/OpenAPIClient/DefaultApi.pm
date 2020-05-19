@@ -224,80 +224,60 @@ sub get_models_list {
 #
 # Index by Using Image URL
 # 
-# @param string $model_id Model ID (required)
-# @param string $image_url Image URL (required)
+# @param InlineObject $inline_object  (required)
 {
     my $params = {
-    'model_id' => {
-        data_type => 'string',
-        description => 'Model ID',
-        required => '1',
-    },
-    'image_url' => {
-        data_type => 'string',
-        description => 'Image URL',
+    'inline_object' => {
+        data_type => 'InlineObject',
+        description => '',
         required => '1',
     },
     };
     __PACKAGE__->method_documentation->{ 'index_by_image_url' } = { 
         summary => 'Index by Using Image URL',
         params => $params,
-        returns => 'string',
+        returns => undef,
         };
 }
-# @return string
+# @return void
 #
 sub index_by_image_url {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'model_id' is set
-    unless (exists $args{'model_id'}) {
-      croak("Missing the required parameter 'model_id' when calling index_by_image_url");
-    }
-
-    # verify the required parameter 'image_url' is set
-    unless (exists $args{'image_url'}) {
-      croak("Missing the required parameter 'image_url' when calling index_by_image_url");
+    # verify the required parameter 'inline_object' is set
+    unless (exists $args{'inline_object'}) {
+      croak("Missing the required parameter 'inline_object' when calling index_by_image_url");
     }
 
     # parse inputs
     my $_resource_path = '/index_by_image_url';
 
-    my $_method = 'GET';
+    my $_method = 'POST';
     my $query_params = {};
     my $header_params = {};
     my $form_params = {};
 
     # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    my $_header_accept = $self->{api_client}->select_header_accept();
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
-
-    # query params
-    if ( exists $args{'model_id'}) {
-        $query_params->{'model_id'} = $self->{api_client}->to_query_value($args{'model_id'});
-    }
-
-    # query params
-    if ( exists $args{'image_url'}) {
-        $query_params->{'image_url'} = $self->{api_client}->to_query_value($args{'image_url'});
-    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
 
     my $_body_data;
+    # body params
+    if ( exists $args{'inline_object'}) {
+        $_body_data = $args{'inline_object'};
+    }
+
     # authentication setting, if any
     my $auth_settings = [qw(x-api-key )];
 
     # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+    $self->{api_client}->call_api($_resource_path, $_method,
                                            $query_params, $form_params,
                                            $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('string', $response);
-    return $_response_object;
+    return;
 }
 
 #
@@ -305,14 +285,20 @@ sub index_by_image_url {
 #
 # Index Local Image
 # 
-# @param string $model_id Model ID (required)
+# @param string $model_id  (optional)
+# @param string $tag  (optional)
 # @param string $file  (optional)
 {
     my $params = {
     'model_id' => {
         data_type => 'string',
-        description => 'Model ID',
-        required => '1',
+        description => '',
+        required => '0',
+    },
+    'tag' => {
+        data_type => 'string',
+        description => '',
+        required => '0',
     },
     'file' => {
         data_type => 'string',
@@ -331,11 +317,6 @@ sub index_by_image_url {
 sub index_image {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'model_id' is set
-    unless (exists $args{'model_id'}) {
-      croak("Missing the required parameter 'model_id' when calling index_image");
-    }
-
     # parse inputs
     my $_resource_path = '/index_image';
 
@@ -351,11 +332,16 @@ sub index_image {
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('multipart/form-data');
 
-    # query params
-    if ( exists $args{'model_id'}) {
-        $query_params->{'model_id'} = $self->{api_client}->to_query_value($args{'model_id'});
+    # form params
+    if ( exists $args{'model_id'} ) {
+                $form_params->{'model_id'} = $self->{api_client}->to_form_value($args{'model_id'});
     }
-
+    
+    # form params
+    if ( exists $args{'tag'} ) {
+                $form_params->{'tag'} = $self->{api_client}->to_form_value($args{'tag'});
+    }
+    
     # form params
     if ( exists $args{'file'} ) {
         $form_params->{'file'} = [] unless defined $form_params->{'file'};
@@ -459,16 +445,16 @@ sub tag_image_by_url {
 #
 # Predict by Image
 # 
-# @param string $model_id Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. (required)
 # @param string $file  (optional)
+# @param string $model_id  (optional)
 {
     my $params = {
-    'model_id' => {
-        data_type => 'string',
-        description => 'Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard.',
-        required => '1',
-    },
     'file' => {
+        data_type => 'string',
+        description => '',
+        required => '0',
+    },
+    'model_id' => {
         data_type => 'string',
         description => '',
         required => '0',
@@ -485,11 +471,6 @@ sub tag_image_by_url {
 sub tag_local_image {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'model_id' is set
-    unless (exists $args{'model_id'}) {
-      croak("Missing the required parameter 'model_id' when calling tag_local_image");
-    }
-
     # parse inputs
     my $_resource_path = '/predict';
 
@@ -505,16 +486,16 @@ sub tag_local_image {
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('multipart/form-data');
 
-    # query params
-    if ( exists $args{'model_id'}) {
-        $query_params->{'model_id'} = $self->{api_client}->to_query_value($args{'model_id'});
-    }
-
     # form params
     if ( exists $args{'file'} ) {
         $form_params->{'file'} = [] unless defined $form_params->{'file'};
         push @{$form_params->{'file'}}, $args{'file'};
             }
+    
+    # form params
+    if ( exists $args{'model_id'} ) {
+                $form_params->{'model_id'} = $self->{api_client}->to_form_value($args{'model_id'});
+    }
     
     my $_body_data;
     # authentication setting, if any

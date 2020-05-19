@@ -229,6 +229,7 @@ To load the models:
 ```perl
 use WWW::OpenAPIClient::Object::InlineObject;
 use WWW::OpenAPIClient::Object::InlineObject1;
+use WWW::OpenAPIClient::Object::InlineObject2;
 
 ````
 
@@ -245,6 +246,7 @@ use WWW::OpenAPIClient::DefaultApi;
 # load the models
 use WWW::OpenAPIClient::Object::InlineObject;
 use WWW::OpenAPIClient::Object::InlineObject1;
+use WWW::OpenAPIClient::Object::InlineObject2;
 
 # for displaying the API response data
 use Data::Dumper;
@@ -278,7 +280,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**create_new_model**](docs/DefaultApi.md#create_new_model) | **PUT** /models | Create New Model
 *DefaultApi* | [**delete_model**](docs/DefaultApi.md#delete_model) | **DELETE** /models | Delete Model
 *DefaultApi* | [**get_models_list**](docs/DefaultApi.md#get_models_list) | **GET** /models | Get Models List
-*DefaultApi* | [**index_by_image_url**](docs/DefaultApi.md#index_by_image_url) | **GET** /index_by_image_url | Index by Using Image URL
+*DefaultApi* | [**index_by_image_url**](docs/DefaultApi.md#index_by_image_url) | **POST** /index_by_image_url | Index by Using Image URL
 *DefaultApi* | [**index_image**](docs/DefaultApi.md#index_image) | **POST** /index_image | Index Local Image
 *DefaultApi* | [**tag_image_by_url**](docs/DefaultApi.md#tag_image_by_url) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 *DefaultApi* | [**tag_local_image**](docs/DefaultApi.md#tag_local_image) | **POST** /predict | Predict by Image
@@ -288,6 +290,7 @@ Class | Method | HTTP request | Description
 # DOCUMENTATION FOR MODELS
  - [WWW::OpenAPIClient::Object::InlineObject](docs/InlineObject.md)
  - [WWW::OpenAPIClient::Object::InlineObject1](docs/InlineObject1.md)
+ - [WWW::OpenAPIClient::Object::InlineObject2](docs/InlineObject2.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION
